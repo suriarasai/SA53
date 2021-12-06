@@ -9,7 +9,4 @@ import sg.edu.nus.welcome.model.Customer;
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 	
 	ArrayList<Customer> findCustomersByName(String name);
-	
-	
-
 }
