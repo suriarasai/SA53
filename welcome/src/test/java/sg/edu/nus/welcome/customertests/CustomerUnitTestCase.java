@@ -14,11 +14,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import sg.edu.nus.welcome.WelcomeApplication;
 import sg.edu.nus.welcome.model.Customer;
 import sg.edu.nus.welcome.model.Product;
+import sg.edu.nus.welcome.repo.AddressRepo;
 import sg.edu.nus.welcome.repo.CustomerRepo;
 
 @ExtendWith(SpringExtension.class)
@@ -29,6 +31,9 @@ public class CustomerUnitTestCase {
 	
 	@Autowired
 	CustomerRepo crepo;
+	
+	@Autowired
+	AddressRepo arepo;
 	
 	@Test
 	@Order(1)
@@ -60,26 +65,45 @@ public class CustomerUnitTestCase {
 		ArrayList<Customer> clist = new ArrayList<Customer>();
 		clist.add(c);clist.add(c1);clist.add(c2);clist.add(c3);
 		crepo.saveAllAndFlush(clist);
-		Customer result = crepo.readCustomerByNameAndAddress("Bhuvesh", "👍");
+		Customer result = crepo.readCustomerByNameAndAddress("Bhuvesh");
 		assertEquals(c3, result, "Test Case Failure");
 		
 	}
 	
 	@Test
 	@Order(3)
-	public void testReadAndSortByAddress() {
+	public void testReadAndSortByName() {
 		crepo.deleteAll();
+		arepo.deleteAll();
 		Customer c = new Customer("Xin", "Germany");
-		Customer c1 = new Customer("Theresa", "Island");
+		Customer c1 = new Customer("Xin", "Island");
 		Customer c2 = new Customer("Melinda", "Singapore Island");
 		Customer c3 = new Customer("Bhuvesh", "Netherland");   
 		ArrayList<Customer> clist = new ArrayList<Customer>();
 		clist.add(c);clist.add(c1);clist.add(c2);clist.add(c3);
 		crepo.saveAllAndFlush(clist);
-		//
-		//ArrayList<Customer> result = crepo.readAndSortByAddress("Island", new Sort("name"));
+		ArrayList<Customer> result = crepo.readCustomerSortedByName("Xin", Sort.by(Direction.ASC, "customerId"));
+		for (Customer customer : result) {
+			System.out.println(customer.toString());
+		}
+		assertEquals(result.size(), 2);
 		
-		//assertEquals(c3, result, "Test Case Failure");
+	}
+	
+	@Test
+	@Order(4)
+	public void testReadByCustomer_Address_Street() {
+		crepo.deleteAll();
+		arepo.deleteAll();
+		Customer c = new Customer("Xin", "Island");
+		Customer c1 = new Customer("Xin", "Island");
+		Customer c2 = new Customer("Melinda", "Singapore Island");
+		Customer c3 = new Customer("Bhuvesh", "Netherland");   
+		ArrayList<Customer> clist = new ArrayList<Customer>();
+		clist.add(c);clist.add(c1);clist.add(c2);clist.add(c3);
+		crepo.saveAllAndFlush(clist);
+		ArrayList<Customer> result = crepo.readByAddress_StreetLike("Island");
+		assertEquals(result.size(), 2);
 		
 	}
 
