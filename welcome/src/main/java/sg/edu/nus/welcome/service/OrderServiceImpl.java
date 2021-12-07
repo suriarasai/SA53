@@ -15,8 +15,13 @@ import sg.edu.nus.welcome.model.LineItem;
 public class OrderServiceImpl implements OrderService {
 
 	@Override
-	public int insertOrder(Customer c, Address sa, Address ba, HashSet<LineItem> li) {
+	public int insertOrder(Customer c, Address sa, Address ba, HashSet<LineItem> li)  {
 		
+		// Logic - check c is valid
+				//Throw Exception
+		// check sa ba is valid 
+		// li 
+		// isert
 		return 0;
 	}
 	
