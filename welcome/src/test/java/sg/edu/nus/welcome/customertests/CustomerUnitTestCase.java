@@ -102,8 +102,8 @@ public class CustomerUnitTestCase {
 		ArrayList<Customer> clist = new ArrayList<Customer>();
 		clist.add(c);clist.add(c1);clist.add(c2);clist.add(c3);
 		crepo.saveAllAndFlush(clist);
-		ArrayList<Customer> result = crepo.readByAddress_StreetLike("Island");
-		assertEquals(result.size(), 2);
+		ArrayList<Customer> result = crepo.readByAddress_StreetLike("%Island%");
+		assertEquals(result.size(), 3);
 		
 	}
 
