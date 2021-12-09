@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Listing page</title>
+</head>
+
+<body>
+	<h1>CRUD List Demo </h1>
+
+	<h2>Add a student</h2>
+	<p><a href="sform.html" th:href="@{/student/load}" th:utext="#{student.add}">Add</a></p>
+
+	<table th:unless="${#lists.isEmpty(students)}" border="1 pt">
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>NICK</th>
+			<th>FEE</th>
+			<th>CAP</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
+		<tr th:each="student:${students}">
+			<td th:text="${student.studentId}">ID</td>
+			<td th:text="${student.name}">NAME</td>
+			<td th:text="${student.nick}">NICK</td>
+			<td th:text="${student.fee}">FEE</td>
+			<td th:text="${student.cap}">CAP</td>
+			<td><a href="sform.html" th:href="@{/student/editload/}+${student.studentId}"
+					th:utext="#{student.edit}">Edit</a></td> >
+			<td><a href="sform.html" th:href="@{/student/deletestudent/}+${student.studentId}"
+					th:utext="#{student.delete}">Delete</a></td>>
+		</tr>
+	</table>
+</body>
+
+</html>

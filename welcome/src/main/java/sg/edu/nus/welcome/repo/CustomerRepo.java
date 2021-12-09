@@ -11,7 +11,10 @@ import sg.edu.nus.welcome.model.Customer;
 
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 	
+	// In built templates in Spring Data
 	ArrayList<Customer> findCustomersByName(String name);
+	ArrayList<Customer> readByAddress_StreetLike(String street);
+	
 	
 	@Query("Select c from Customer c where c.name = :name")
 	Customer readCustomerByNameAndAddress(@Param("name") String n);
@@ -24,5 +27,5 @@ public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 	//ArrayList<Customer> readAndSortByAddress(@Param("address") String a, Sort sort);
 	
 	
-	ArrayList<Customer> readByAddress_StreetLike(String street);
+	
 }
