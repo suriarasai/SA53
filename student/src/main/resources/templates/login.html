@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Login Page</title>
+	<link rel="stylesheet" type="text/css" media="all" href="../../css/simple.css" th:href="@{/css/simple.css}" />
+</head>
+
+<body>
+	<form th:object="${user}" th:action="@{'/common/authenticate'}">
+		<table class="framed">
+			<tr>
+				<td><span th:text="#{fieldLabel.username}">Username</span></td>
+				<td colspan="3">
+					<fieldset>
+						<input type="text" th:field="*{name}">
+
+					</fieldset>
+				</td>
+			</tr>
+			<tr>
+				<td><span th:text="#{fieldLabel.password}">Password</span></td>
+				<td colspan="3">
+					<fieldset> <input type="password" th:field="*{password}">
+
+					</fieldset>
+				</td>
+
+			</tr>
+			<tr>
+				<td colspan="4">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="submit" />
+				</td>
+				<td>
+					<input type="reset" />
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+
+</html>

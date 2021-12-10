@@ -3,16 +3,19 @@
 
 <head>
 	<title>Listing page</title>
-		<link rel="stylesheet" type="text/css" media="all"
-	    href="../../css/simple.css" th:href="@{/css/simple.css}"/>
+	<link rel="stylesheet" type="text/css" media="all" href="../../css/simple.css" th:href="@{/css/simple.css}" />
 </head>
 
 <body>
 	<h1>CRUD List Demo </h1>
-
+	<br />
+	<span th:if="${usession != null}">
+		<h2 th:utext="${session.usession.name}"> Hello </h2>
+	</span>
 	<h2>Add a student</h2>
-	<p><a href="sform.html" th:href="@{/student/load}" th:utext="#{student.add}">Add</a></p>
-
+	<br />
+	<p><a th:href="@{/student/load}" th:utext="#{student.add}">Add</a></p>
+	<br />
 	<table th:unless="${#lists.isEmpty(students)}" border="1 pt">
 		<tr>
 			<th>ID</th>
@@ -20,6 +23,8 @@
 			<th>NICK</th>
 			<th>FEE</th>
 			<th>CAP</th>
+			<th>TRACK</th>
+			<th>ED</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -29,6 +34,8 @@
 			<td th:text="${student.nick}">NICK</td>
 			<td th:text="${student.fee}">FEE</td>
 			<td th:text="${student.cap}">CAP</td>
+			<td th:text="${student.track}">TRACK</td>
+			<td th:text="${#dates.format(student.enrolledOn, 'dd/MM/YYYY')}">ED</td> 
 			<td><a href="sform.html" th:href="@{/student/editload/}+${student.studentId}"
 					th:utext="#{student.edit}">Edit</a></td> >
 			<td><a href="sform.html" th:href="@{/student/deletestudent/}+${student.studentId}"

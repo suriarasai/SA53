@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Welcome Page</title>
+	<link rel="stylesheet" type="text/css" media="all" href="../../css/simple.css" th:href="@{/css/simple.css}" />
+</head>
+
+<body>
+   <h1>Welcome Page</h1>
+   <h2 th:utext="${session.usession.name}"> Hello </h2 >
+   <p><a th:href="@{/student/all}" th:utext="#{fieldLabel.list}">Student Listing</a></p>	
+</body>
+</html>

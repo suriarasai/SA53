@@ -3,32 +3,55 @@
 
 <head>
 	<title>Student Form</title>
-		<link rel="stylesheet" type="text/css" media="all"
-	    href="../../css/simple.css" th:href="@{/css/simple.css}"/>
+	<link rel="stylesheet" type="text/css" media="all" href="../../css/simple.css" th:href="@{/css/simple.css}" />
 </head>
 
 <body>
 	<h1>Student Form Submit Page </h1>
+	<span th:unless="${#strings.isEmpty(usession)}">
+		<h2 th:utext="${session.usession.name}"> Hello </h2>
+	</span>
 	<form th:object="${student}" th:action="@{/student/addstudent}" method="POST">
 		<fieldset>
-		   <input type="hidden" th:field="*{studentId}"/>
-		  </fieldset>
+			<input type="hidden" th:field="*{studentId}" />
+		</fieldset>
 		<fieldset>
 			Name : <input type="text" th:field="*{name}" />
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 		</fieldset>
 		<fieldset>
 			Nick Name: <input type="text" th:field="*{nick}" />
+			<p th:if="${#fields.hasErrors('nick')}" th:errors="*{nick}"></p>
 		</fieldset>
 		<fieldset>
 			Fee: <input type="text" th:field="*{fee}" />
+			<p th:if="${#fields.hasErrors('fee')}" th:errors="*{fee}"></p>
 		</fieldset>
 		<fieldset>
 			CAP: <input type="text" th:field="*{cap}" />
+			<p th:if="${#fields.hasErrors('cap')}" th:errors="*{cap}"></p>
+
 		</fieldset>
 		<fieldset>
-			<input type="submit" value="SAVE"/>
-			&nbsp; 
-			<input type="reset" value="RESET"/>
+			TRACK:
+			<select name="track">
+				<option th:each="trackOpt : ${T(sg.edu.nus.student.model.Track).values()}" th:value="${trackOpt}"
+					th:text="${trackOpt.displayValue}"></option>
+			</select>
+			<p th:if="${#fields.hasErrors('track')}" th:errors="*{track}"></p>
+
+		</fieldset>
+		<fieldset>
+			ENROLLED ON DATE : <input type="text" th:field="*{enrolledOn}" placeholder="dd/MM/YYYY" 
+			                            th:utext="*{#dates.format(enrolledOn, 'dd/MM/YYYY')}"/>
+			                            <p th:if="${#fields.hasErrors('enrolledOn')}" th:errors="*{enrolledOn}"></p>
+
+		</fieldset>
+		
+		<fieldset>
+			<input type="submit" value="SAVE" />
+			&nbsp;
+			<input type="reset" value="RESET" />
 		</fieldset>
 	</form>
 

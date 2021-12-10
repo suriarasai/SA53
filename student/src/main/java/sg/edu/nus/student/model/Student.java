@@ -1,25 +1,37 @@
 package sg.edu.nus.student.model;
 
-import java.util.Objects;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int studentId;
+	@NotEmpty
+	@Size(min=3, max=10)
 	private String name;
+	@Length(max=20)
 	private String nick;
 	private Double cap;
 	private Double fee;
-	public Student() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	private Track track;
+	@DateTimeFormat(pattern = "dd/MM/YYYY")
+	private Date enrolledOn;
 	public Student(String name, String nick, Double cap, Double fee) {
 		super();
 		this.name = name;
@@ -27,56 +39,16 @@ public class Student {
 		this.cap = cap;
 		this.fee = fee;
 	}
-	public int getStudentId() {
-		return studentId;
-	}
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
+	public Student(String name, String nick, Double cap, Double fee, Track track, Date enrolledOn) {
+		super();
 		this.name = name;
-	}
-	public String getNick() {
-		return nick;
-	}
-	public void setNick(String nick) {
 		this.nick = nick;
-	}
-	public Double getCap() {
-		return cap;
-	}
-	public void setCap(Double cap) {
 		this.cap = cap;
-	}
-	public Double getFee() {
-		return fee;
-	}
-	public void setFee(Double fee) {
 		this.fee = fee;
+		this.track=track;
+		this.enrolledOn = enrolledOn;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(studentId);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Student other = (Student) obj;
-		return studentId == other.studentId;
-	}
-	@Override
-	public String toString() {
-		return "Student [studentId=" + studentId + ", name=" + name + ", nick=" + nick + ", cap=" + cap + ", fee=" + fee
-				+ "]";
-	}
+
 	
 
 }
