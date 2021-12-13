@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Transfer Money</title>
+	<link rel="stylesheet" type="text/css" media="all" href="../../css/simple.css" th:href="@{/css/simple.css}" />
+</head>
+
+<body>
+	<h1>Transfer Money</h1>
+
+	<form th:object="${transfer}" th:action="@{'/transfer'}">
+		<table class="framed">
+			<tr>
+				<td><span th:text="From Account Number">From Account Number</span></td>
+				<td colspan="3">
+					<fieldset>
+						<input type="text" th:field="*{from}">
+
+					</fieldset>
+				</td>
+			</tr>
+			<tr>
+				<td><span th:text="To Account Number">To Account Number</span></td>
+				<td colspan="3">
+					<fieldset>
+						<input type="text" th:field="*{to}">
+
+					</fieldset>
+				</td>
+			</tr>
+			<tr>
+				<td><span th:text="Amount">Amount</span></td>
+				<td colspan="3">
+					<fieldset> <input type="text" th:field="*{amount}">
+
+					</fieldset>
+				</td>
+
+			</tr>
+			<tr>
+				<td colspan="4">&nbsp;</td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>
+					<input type="submit" />
+				</td>
+				<td>
+					<input type="reset" />
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+
+</html>
