@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: html_head"/>
+<body>
+	<div th:replace="fragments/layout.html :: menu"/>
+	<div th:replace="fragments/layout.html :: header"/> 
+	<h1>About CATS page</h1>
+		<img src="../../static/image/cats.gif" width="5%"
+			th:src="@{/image/cats.gif}" />
+	<p>
+		Write whatever you want about your team :)
+	</p>
+</body>
+</html>
