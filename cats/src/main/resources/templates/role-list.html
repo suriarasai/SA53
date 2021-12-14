@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+	<div th:replace="fragments/layout.html :: menu"/>
+	<div th:replace="fragments/layout.html :: header"/> 
+	<h3>Role List page</h3>
+	<a th:href="@{/admin/role/create}">Add
+		Role</a>
+
+	<div th:if="${not #lists.isEmpty(roleList)}">
+		<table style="border: 1;">
+
+			<tr class="listHeading">
+				<th><span th:text="#{fieldLabel.roleId}"></span></th>
+				<th><span th:text="#{fieldLabel.roleName}"></span></th>
+				<th><span th:text="#{fieldLabel.roleDesc}"></span></th>
+				<th><span th:text="#{caption.edit}"></span></th>
+				<th><span th:text="#{caption.delete}"></span></th>
+			</tr>
+			<tr th:each="role : ${roleList}" class="listRecord">
+				<td align="left" th:text="${role.roleId}">Id</td>
+				<td align="left" th:text="${role.name}">Name</td>
+				<td align="left" th:text="${role.description}">Desc</td>
+				<td><a th:href="@{/admin/role/edit/}+${role.roleId}" class="btn btn-default"><span
+							th:text="#{caption.edit}"></span></a></td>
+				<td><a th:href="@{/admin/role/delete/}+${role.roleId}" class="btn btn-default"><span
+							th:text="#{caption.delete}"></span></a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>

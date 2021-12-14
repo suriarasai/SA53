@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout.html :: html_head"/>
+
+<body>
+	<div th:replace="fragments/layout.html :: menu"/>
+	<div th:replace="fragments/layout.html :: header"/> 
+	<h3>New Department</h3>
+
+	<form action="#" th:action="@{'/admin/department/create'}" th:object="${department}" method="post">
+		<table>
+			<tbody>
+				<tr>
+					<td><span th:text="#{fieldLabel.departmentId}"></span></td>
+					<td>
+						<fieldset> <input type="text" th:field="*{departmentId}" /> </fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('departmentId')}" th:errors="*{departmentId}"></td>
+				</tr>
+				<tr>
+					<td><span th:text="#{fieldLabel.managerInCharge}"></span></td>
+					<td>
+						<fieldset> <select th:field="*{managerInCharge}">
+								<option th:each="manager:${eidlist}" th:value="${manager}" th:text="${manager}">List
+								</option>
+							</select> </fieldset>
+					</td>
+					<td th:if="${#fields.hasErrors('managerInCharge')}" th:errors="*{managerInCharge}"></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Create" class="blcass" /></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+</body>
+
+</html>
