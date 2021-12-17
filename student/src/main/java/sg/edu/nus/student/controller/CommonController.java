@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 import sg.edu.nus.student.model.User;
 
 @Controller
-@RestController
 @RequestMapping("/common")
 public class CommonController {
 
