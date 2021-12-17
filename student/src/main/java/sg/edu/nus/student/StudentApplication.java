@@ -12,8 +12,8 @@ import sg.edu.nus.student.service.MoneyTransfer;
 @SpringBootApplication
 public class StudentApplication {
 	
-	@Autowired
-	MoneyTransfer transfer;
+	//@Autowired
+	//MoneyTransfer transfer;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(StudentApplication.class, args);
@@ -23,9 +23,9 @@ public class StudentApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
-	      Account a = new Account(1, 1000.0, "John");
-	      Account b = new Account(2, 500.0, "Jane");
-	      transfer.transfer(a, b, 50.0);
+	     // Account a = new Account(1, 1000.0, "John");
+	    //  Account b = new Account(2, 500.0, "Jane");
+	     // transfer.transfer(a, b, 50.0);
 		};
 	}
 	
