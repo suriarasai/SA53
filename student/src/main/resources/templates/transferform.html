@@ -9,7 +9,7 @@
 <body>
 	<h1>Transfer Money</h1>
 
-	<form th:object="${transfer}" th:action="@{'/transfer'}">
+	<form th:object="${transfer?}" th:action="@{'/transfer'}">
 		<table class="framed">
 			<tr>
 				<td><span th:text="From Account Number">From Account Number</span></td>
